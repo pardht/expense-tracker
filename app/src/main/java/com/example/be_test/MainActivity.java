@@ -1,10 +1,14 @@
 package com.example.be_test;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -14,10 +18,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText inpJmlPengeluaran, inpDescPengeluaran, inpTglPengeluaran;
     private Button btnInpPengeluaran;
+    private ListView lvTransactions;
+    private ArrayList<Transaction> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +48,42 @@ public class MainActivity extends AppCompatActivity {
                 savePengeluaran();
             }
         });
+
+        lvTransactions = findViewById(R.id.list_transactions);
+
     }
 
-//    class pengeluaran
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
+    }
+
+    private void refresh() {
+        DbHelper dbHelper = new DbHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String sql = "SELECT `amount`, `description`, `date`, `type` FROM `transaction` WHERE 1";
+        Cursor c = db.rawQuery(sql, new String[0]);
+
+        //ambil data dari dtbsase
+        list.clear();
+        while(c.moveToNext()) {
+            int amount = c.getInt(0);
+            String description = c.getString(1);
+            String date = c.getString(2);
+            int type = c.getInt(3);
+
+            Transaction t = new Transaction(amount, description, date, type);
+            list.add(t);
+        }
+
+        //update ke list bang
+        lvTransactions.setAdapter(new ArrayAdapter<Transaction>(this,
+                android.R.layout.simple_list_item_1, list));
+    }
+
+    //    class pengeluaran
     public class Pengeluaran {
         private String jumlah;
         private String deskripsi;
