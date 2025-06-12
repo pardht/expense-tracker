@@ -14,32 +14,12 @@
         android:orientation="vertical"
         android:padding="50dp">
 
-        <EditText
-            android:id="@+id/inp_jml_pengeluaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Jumlah Pengeluaran"/>
-
-        <EditText
-            android:id="@+id/inp_desc_pengeluaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Deskripsi Pengeluaran"/>
-
-        <EditText
-            android:id="@+id/inp_tgl_pengeluaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tanggal Pengeluaran"
-            android:inputType="date" />
-
         <Button
-            android:id="@+id/btn_inp_pengeluaran"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="input"/>
+            android:id="@+id/btn_input"
+            android:text="input transaction"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

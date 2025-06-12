@@ -29,6 +29,7 @@ public class Transaction {
     }
     @Override
     public String toString() {
-        return "Jumlah: " + amount + "\nDeskripsi: " + description + "\nTanggal: " + date;
+        return "Jumlah: " + amount + "\nDeskripsi: "
+                + description + "\nTanggal: " + date + "\ntipe: " + type ;
     }
 }
