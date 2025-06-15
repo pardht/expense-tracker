@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class InputActivity extends AppCompatActivity {
-    private EditText inpJml, inpDesc, inpTgl, inpType;
+    private EditText inpJml, inpDesc, inpTgl;
+    private RadioGroup rdGroup;
     private Button btnSubmit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +32,16 @@ public class InputActivity extends AppCompatActivity {
             return insets;
         });
 
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String todayDate = sdf.format(calendar.getTime());
+
         btnSubmit = findViewById(R.id.btn_submit);
         inpJml = findViewById(R.id.inp_jml);
         inpDesc = findViewById(R.id.inp_desc);
         inpTgl = findViewById(R.id.inp_tgl);
-        inpType = findViewById(R.id.inp_type);
+        inpTgl.setText(todayDate);
+        rdGroup = findViewById(R.id.rd_group);
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -45,10 +56,18 @@ public class InputActivity extends AppCompatActivity {
         String jml = "" + inpJml.getText();
         String desc = "" + inpDesc.getText();
         String tgl = "" + inpTgl.getText();
-        String tipe = "" + inpType.getText();
+
+        int selectedId = rdGroup.getCheckedRadioButtonId();
+        int type = -1; // default atau error value
+
+        if (selectedId == R.id.rd_expense) {
+            type = 0;  // Pengeluaran = 0
+        } else if (selectedId == R.id.rd_revenue) {
+            type = 1;  // Pemasukan = 1
+        }
 
         int amount = Integer.parseInt(jml);
-        int type = Integer.parseInt(tipe);
+//        int type = Integer.parseInt(tipe);
 
         Transaction t = new Transaction(amount, desc, tgl, type);
 
