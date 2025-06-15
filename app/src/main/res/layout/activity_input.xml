@@ -7,45 +7,110 @@
     android:layout_height="match_parent"
     tools:context=".InputActivity"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/bone"
         android:padding="50dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Transaction"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:textStyle="bold"/>
         <EditText
             android:id="@+id/inp_jml"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Jumlah Pengeluaran"/>
+            android:hint="$$$"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_edittext_rounded"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B8C9"
+            android:textSize="16sp"
+            android:inputType="numberDecimal"/>
 
         <EditText
             android:id="@+id/inp_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Deskripsi Pengeluaran"/>
+            android:hint="Note"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_edittext_rounded"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B8C9"
+            android:textSize="16sp"
+            android:inputType="text"/>
 
         <EditText
             android:id="@+id/inp_tgl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tanggal Pengeluaran"
+            android:hint="Date"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_edittext_rounded"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="@color/black"
+            android:textColorHint="#B0B8C9"
+            android:textSize="16sp"
             android:inputType="date" />
 
-        <EditText
-            android:id="@+id/inp_type"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="tipe 1 or 0"
-            android:inputType="text" />
+            android:background="@drawable/bg_edittext_rounded"
+            android:padding="8dp">
+        <RadioGroup
+            android:id="@+id/rd_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rd_expense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pengeluaran"
+                android:button="@null"
+                android:background="@drawable/expense_toggle_selector"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:checked="true"
+                android:gravity="center"/>
+
+            <RadioButton
+                android:id="@+id/rd_revenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pemasukan"
+                android:button="@null"
+                android:background="@drawable/revenue_toggle_selector"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center" />
+        </RadioGroup>
+        </LinearLayout>
 
         <Button
+            android:layout_marginTop="20dp"
             android:id="@+id/btn_submit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="submit"/>
+            android:text="SAVE"
+            android:background="@drawable/headbg"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 
 </LinearLayout>
