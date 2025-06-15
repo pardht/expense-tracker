@@ -7,27 +7,126 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="50dp">
+        android:padding="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily Expense Tracker App"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:textStyle="bold"/>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_input"
-            android:text="input transaction"/>
+            android:orientation="vertical"
+            android:background="@drawable/headbg"
+            android:padding="30dp">
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ListView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Balance"
+                android:textColor="#dbd9d9"
+                android:textSize="15sp"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="$109,330"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:paddingBottom="20dp"
+
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="30dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Revenue"
+                        android:textColor="#dbd9d9"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/tv_revenue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Expense"
+                        android:textColor="#dbd9d9"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/tv_expense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/list_transactions"/>
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_input"
+                android:text="input transaction"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_transactions"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
