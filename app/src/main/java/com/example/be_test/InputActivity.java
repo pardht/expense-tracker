@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import java.util.Locale;
 public class InputActivity extends AppCompatActivity {
     private EditText inpJml, inpDesc, inpTgl;
     private RadioGroup rdGroup;
-    private Button btnSubmit;
+    private Button btnSubmit, btnCancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class InputActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String todayDate = sdf.format(calendar.getTime());
 
+        btnCancel = findViewById(R.id.btn_cancel);
         btnSubmit = findViewById(R.id.btn_submit);
         inpJml = findViewById(R.id.inp_jml);
         inpDesc = findViewById(R.id.inp_desc);
@@ -50,15 +52,27 @@ public class InputActivity extends AppCompatActivity {
                 saveTransaction();
             }
         });
-    }
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+}
 
     private void saveTransaction() {
         String jml = "" + inpJml.getText();
         String desc = "" + inpDesc.getText();
         String tgl = "" + inpTgl.getText();
 
+        if (jml.isEmpty() || desc.isEmpty()) {
+            Toast.makeText(this, "Transaction details cannot empty!!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int selectedId = rdGroup.getCheckedRadioButtonId();
-        int type = -1; // default atau error value
+        int type = -1; // default
 
         if (selectedId == R.id.rd_expense) {
             type = 0;  // Pengeluaran = 0
@@ -67,9 +81,9 @@ public class InputActivity extends AppCompatActivity {
         }
 
         int amount = Integer.parseInt(jml);
-//        int type = Integer.parseInt(tipe);
+        int id = 0;
 
-        Transaction t = new Transaction(amount, desc, tgl, type);
+        Transaction t = new Transaction(id, amount, desc, tgl, type);
 
         DbHelper dbHelper = new DbHelper(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
