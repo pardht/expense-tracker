@@ -1,21 +1,22 @@
 package com.example.be_test;
 
 public class Transaction {
-    private int amount;
-    private String description;
-    private String date;
-
-    private int type;
+    private int amount, id, type;
+    private String description, date;
 
     // Constructor
-    public Transaction(int amount, String description, String date, int type) {
+    public Transaction(int id, int amount, String description, String date, int type) {
+        this.id = id;
         this.amount = amount;
         this.description = description;
         this.date = date;
         this.type = type;
     }
     // Getter untuk mengambil data
-    public int getAmount() {
+    public int getId() {
+        return id;
+
+    }public int getAmount() {
         return amount;
     }
     public String getDescription() {
@@ -30,6 +31,7 @@ public class Transaction {
     @Override
     public String toString() {
         return "Jumlah: " + amount + "\nDeskripsi: "
-                + description + "\nTanggal: " + date + "\ntipe: " + type ;
+                + description + "\nTanggal: " + date + "\ntipe: " + type
+                + "\nid: " + id;
     }
 }
